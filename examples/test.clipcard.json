@@ -1,0 +1,15 @@
+{
+  "id": "demo-001",
+  "impact": 5,
+  "uncertainty": 4,
+  "hazard": "If feature flag X remains on during peak, error rate may exceed 3% in region Z.",
+  "recheck": { "due_time": "2030-01-01T12:00:00Z" },
+  "steward": { "primary": "oncall-sre@example.org" },
+  "authority_window": { "scope_limit": "revert ≤10% rollout", "time_limit": "2h", "auto_pause": true },
+  "kill_criteria": [
+    { "condition": "p95 latency > 450ms for 5 min", "action": "auto rollback 10% and page owner" }
+  ],
+  "evidence_links": [
+    { "name": "Runbook", "url": "https://example.org/runbook" }
+  ]
+}
