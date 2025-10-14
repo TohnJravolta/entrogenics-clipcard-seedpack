@@ -1,0 +1,58 @@
+manifest:
+  version: "1.0"
+  project: "Entrogenics DFM Seedpack"
+  seeds_root: "./"
+  dfms:
+    - id: devops-sre
+      path: dfm/dfm-devops-sre.md
+      title: "DFM: DevOps / SRE / IT Change"
+      audience: ["SRE","DevOps","Change Manager","Software Architect"]
+      artifacts_anchor: ["Change Ticket","ADR","Incident PR"]
+      metrics_core: ["change_failure_rate","mttr","recheck_on_time","near_miss_rate"]
+      seed_ids: ["seed.devops.clipcard.ci_gate","seed.devops.adr.block"]
+    - id: clinical-sbar
+      path: dfm/dfm-clinical-sbar.md
+      title: "DFM: Clinical Ops / SBAR / QI"
+      audience: ["Charge Nurse","Clinician","QI Lead","Unit Manager"]
+      artifacts_anchor: ["SBAR","Handoff Sheet","Unit Calendar"]
+      metrics_core: ["near_miss_rate","preventable_escalations","recheck_on_time"]
+      seed_ids: ["seed.clinical.sbar.risk_block","seed.clinical.smartphrase.epic"]
+    - id: policy-ts
+      path: dfm/dfm-policy-ts.md
+      title: "DFM: Policy / Trust & Safety"
+      audience: ["Policy Owner","Safety Reviewer","Legal Partner","Ops Lead"]
+      artifacts_anchor: ["Policy Change Memo","Safety Review","Launch Gate"]
+      metrics_core: ["wrongful_action_rate","appeal_rate","review_on_time"]
+      seed_ids: ["seed.policy.ttl.twokey.card","seed.policy.memo.block"]
+    - id: industrial-aviation
+      path: dfm/dfm-industrial-aviation.md
+      title: "DFM: Industrial / Aviation / Safety Management"
+      audience: ["Safety Engineer","Shift Lead","MOC Coordinator"]
+      artifacts_anchor: ["MOC Form","Deviation Log","Alarm Config"]
+      metrics_core: ["deviation_incidents","closeout_on_time","near_miss_rate"]
+      seed_ids: ["seed.industrial.micro_moc.insert","seed.industrial.alarm.binding"]
+    - id: civic-ics
+      path: dfm/dfm-civic-ics.md
+      title: "DFM: Civic / NGO / Emergency Ops (ICS)"
+      audience: ["Ops Section Chief","Planning","Program Lead"]
+      artifacts_anchor: ["ICS-202","ICS-204","OP Brief"]
+      metrics_core: ["near_miss_rate","avoidable_reversals","recheck_on_time"]
+      seed_ids: ["seed.civic.ics.risk_recheck","seed.civic.ics.opcalendar"]
+    - id: aiml-governance
+      path: dfm/dfm-aiml-governance.md
+      title: "DFM: AI / ML Governance & Alignment Ops"
+      audience: ["MLE Lead","Safety Reviewer","Release Manager"]
+      artifacts_anchor: ["Model Release Note","Eval Board","Safety Sign-off"]
+      metrics_core: ["post_release_incidents","eval_escape_rate","review_on_time"]
+      seed_ids: ["seed.aiml.release.clipcard","seed.aiml.ci_eval_gate","seed.aiml.modelcard.block"]
+
+---
+
+
+narrative:
+  packet: "docs/ClipCard_Framework_Packet.md"
+  executive_brief: "docs/executive-brief.md"
+  key_phrase: "ClipCard is the structured friction that overcomes ETTO and escapes local minima."
+
+---
+

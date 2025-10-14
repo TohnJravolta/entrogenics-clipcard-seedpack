@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DFMFrontMatter",
+  "type": "object",
+  "required": ["dfm_id","title","version","domain","trigger_rule","jargon_bridge","metrics","seeds","license"],
+  "properties": {
+    "dfm_id": {"type":"string"},
+    "title": {"type":"string"},
+    "version": {"type":"string"},
+    "domain": {"type":"string"},
+    "trigger_rule": {"type":"string"},
+    "jargon_bridge": {
+      "type":"array",
+      "items":{"type":"object","required":["clipcard_term","domain_term"],"properties":{
+        "clipcard_term":{"type":"string"},
+        "domain_term":{"type":"string"},
+        "notes":{"type":"string"}
+      }}
+    },
+    "metrics": {
+      "type":"array",
+      "items":{"type":"object","required":["name","definition"],"properties":{
+        "name":{"type":"string"},
+        "definition":{"type":"string"},
+        "target":{"type":["string","number","null"]},
+        "method":{"type":["string","null"]}
+      }}
+    },
+    "seeds": {
+      "type":"array",
+      "items":{"type":"object","required":["seed_id","seed_type","language","summary"],"properties":{
+        "seed_id":{"type":"string"},
+        "seed_type":{"type":"string"},
+        "language":{"type":"string"},
+        "summary":{"type":"string"}
+      }}
+    },
+    "license": {"type":"string"},
+    "contacts": {"type":"array","items":{"type":"string"}}
+  }
+}
