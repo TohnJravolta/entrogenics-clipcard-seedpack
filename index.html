@@ -1,27 +1,58 @@
 <!doctype html>
 <!--
-ClipCard (Risk & Recheck) — Single-page landing for GitHub Pages
+ClipCard (Risk & Recheck) - Single-page landing for GitHub Pages
 Place this file at the repo root as: index.html
 Background images expected:
-  /assets/bg-clipcard.webp      (main hero, made from image #2)
-  /assets/bg-clipcard@2x.webp   (optional retina variant of #2)
-  /assets/bg-clipcard-og.webp   (social preview, from image #1)
+  assets/bg-clipcard.webp      (main hero, made from image #2)
+  assets/bg-clipcard@2x.webp   (retina hero)
+  assets/bg-clipcard-og.webp   (social preview, from image #1)
 Optional for Pages: add a blank file named `.nojekyll` at repo root.
 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>ClipCard — Structured Friction for Safer Velocity</title>
+  <title>ClipCard &ndash; Structured Friction for Safer Velocity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="ClipCard is a tiny, triggered, blame-safe add-on for high-risk decisions. Structured friction that overcomes ETTO and escapes local minima." />
-  <link rel="canonical" href="https://YOUR_ORG.github.io/entrogenics-clipcard-seedpack/">
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="Adaptive Systems Kollektive" />
+  <meta name="keywords" content="ClipCard, structured friction, risk management, incident response, stewardship, authority window, two-key approval, kill criteria" />
+  <link rel="canonical" href="https://tohnjravolta.github.io/entrogenics-clipcard-seedpack/">
+  <link rel="icon" type="image/webp" sizes="512x512" href="assets/bg-clipcard.webp" />
+  <link rel="apple-touch-icon" href="assets/bg-clipcard.webp" />
   <!-- Open Graph / Twitter -->
-  <meta property="og:title" content="ClipCard — Structured Friction for Safer Velocity" />
+  <meta property="og:title" content="ClipCard &ndash; Structured Friction for Safer Velocity" />
   <meta property="og:description" content="A minimal ritual for high-risk work. Hazard. Recheck. Steward. Authority Window. Two-Key/TTL. Kill Criteria. Evidence." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://YOUR_ORG.github.io/entrogenics-clipcard-seedpack/assets/bg-clipcard-og.webp" />
+  <meta property="og:url" content="https://tohnjravolta.github.io/entrogenics-clipcard-seedpack/" />
+  <meta property="og:image:alt" content="ClipCard landing page background with neon grid and gradient overlay." />
+  <meta property="og:image" content="https://tohnjravolta.github.io/entrogenics-clipcard-seedpack/assets/bg-clipcard-og.webp" />
+  <meta property="og:site_name" content="ClipCard" />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ClipCard &ndash; Structured Friction for Safer Velocity" />
+  <meta name="twitter:description" content="Tiny, triggered governance for high-risk work &mdash; hazard, recheck, steward, authority window, two-key/TTL, kill criteria, and evidence." />
+  <meta name="twitter:image" content="https://tohnjravolta.github.io/entrogenics-clipcard-seedpack/assets/bg-clipcard-og.webp" />
+  <meta name="twitter:site" content="@TohnJravolta" />
+  <meta name="twitter:creator" content="@TohnJravolta" />
   <meta name="theme-color" content="#0ff1ce" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "ClipCard",
+    "url": "https://tohnjravolta.github.io/entrogenics-clipcard-seedpack/",
+    "description": "ClipCard is a tiny, triggered, blame-safe ritual that adds structured friction for high-risk engineering, ops, and governance decisions.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Adaptive Systems Kollektive"
+    },
+    "creator": {
+      "@type": "Person",
+      "name": "TohnJravolta",
+      "url": "https://github.com/TohnJravolta"
+    }
+  }
+  </script>
   <style>
     :root{
       --bg: #0a0b0f;
@@ -45,9 +76,12 @@ Optional for Pages: add a blank file named `.nojekyll` at repo root.
       position: fixed; inset: 0; z-index: -2;
       background:
         linear-gradient(180deg, rgba(10,11,15,0.6), rgba(10,11,15,0.9)),
+        url("assets/bg-clipcard.webp");
+      background:
+        linear-gradient(180deg, rgba(10,11,15,0.6), rgba(10,11,15,0.9)),
         image-set(
-          url("/assets/bg-clipcard.webp") 1x,
-          url("/assets/bg-clipcard@2x.webp") 2x
+          url("assets/bg-clipcard.webp") 1x,
+          url("assets/bg-clipcard@2x.webp") 2x
         );
       background-position: center;
       background-size: cover;
@@ -104,7 +138,6 @@ Optional for Pages: add a blank file named `.nojekyll` at repo root.
       .card.span8{ grid-column: span 8; }
     }
     h2{ margin: 8px 0 6px; font-size: 22px; letter-spacing:.02em; }
-    h3{ margin: 6px 0 6px; font-size: 16px; color: #b9cbe0; }
     .pill{
       display:inline-block; padding:4px 10px; border-radius:999px; font-size:12px; color:#021012;
       background: linear-gradient(180deg, var(--accent), #88ffe6);
@@ -112,22 +145,43 @@ Optional for Pages: add a blank file named `.nojekyll` at repo root.
     }
     .meta{ color:#8fa7be; font-size:12px; letter-spacing:.08em; text-transform: uppercase; }
     ul.clean{ list-style:none; padding-left: 0; margin: 8px 0; }
-    ul.clean li{ margin: 6px 0; }
+    ul.clean li{
+      margin: 6px 0;
+      padding-left: 22px;
+      position: relative;
+    }
+    ul.clean li::before{
+      content: "";
+      position: absolute;
+      top: 0.7em;
+      left: 0;
+      transform: translateY(-50%);
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 10px #0ff1ce4d;
+    }
     .hr{ height:1px; background: linear-gradient(90deg, transparent, #ffffff22, transparent); margin: 26px 0; }
     footer{ margin-top: 42px; color: #7f97ad; font-size: 12px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; }
     a.link{ color:#a9d8ff; text-decoration: none; border-bottom:1px dashed #a9d8ff66; }
     a.link:hover{ border-bottom-color:#a9d8ff; }
     .badge{ font-size:11px; padding:4px 8px; border:1px dashed #ffffff33; border-radius:8px; color:#a6bcd3; }
+    .card.center-card{
+      text-align:center;
+    }
+    .card.center-card h2{ margin-bottom:8px; }
+    .card.center-card p{ color:#cfe6ff; }
   </style>
 </head>
 <body>
   <div class="bg" aria-hidden="true"></div>
   <div class="scan" aria-hidden="true"></div>
 
-  <div class="wrap">
+  <main class="wrap">
     <header class="hero">
       <div class="brand"><span class="dot" aria-hidden="true"></span> ENTROGENICS / A3GENT</div>
-      <h1>ClipCard — Structured Friction for Safer Velocity</h1>
+      <h1>ClipCard &ndash; Structured Friction for Safer Velocity</h1>
       <p class="sub">
         A tiny, triggered, blame-safe ritual for high-risk decisions.
         Use it only when it matters: <em>Hazard</em>, <em>Recheck</em>, <em>Steward</em>,
@@ -135,9 +189,9 @@ Optional for Pages: add a blank file named `.nojekyll` at repo root.
         Overcome ETTO, escape local minima, and keep flow fast where risk is low.
       </p>
       <div class="cta">
-        <a class="btn" href="https://github.com/YOUR_ORG/entrogenics-clipcard-seedpack" target="_blank" rel="noopener">↗ View Repo</a>
+        <a class="btn" href="https://github.com/TohnJravolta/entrogenics-clipcard-seedpack" target="_blank" rel="noopener">View Repo</a>
         <a class="btn alt" href="docs/executive-brief.md">Executive Brief</a>
-        <a class="btn" href="docs/papers/ClipCard_Whitepaper.md">Whitepaper</a>
+        <a class="btn" href="docs/ClipCard_Framework_Packet.md">Framework Packet</a>
         <a class="btn" href="docs/notebook-index.md">Notebooks</a>
       </div>
     </header>
@@ -147,62 +201,62 @@ Optional for Pages: add a blank file named `.nojekyll` at repo root.
         <div class="card span8">
           <span class="pill">Trigger</span>
           <h2>Only when risk is high</h2>
-          <p class="meta">Impact × Uncertainty ≥ 18 <span class="kbd">or</span> safety/legal/public/irreversible red flag.</p>
+          <p class="meta">Impact &times; Uncertainty &ge; 18 or safety/legal/public/irreversible red flag.</p>
           <ul class="clean">
-            <li>⚠️ <strong>Hazard</strong>: “if X then Y fails [where Z]”. Specific, local, measurable.</li>
-            <li>🗓️ <strong>Recheck/Jumps</strong>: date or condition to look again; wired to calendar/alerts.</li>
-            <li>👤 <strong>Recheck Steward</strong>: named role; rotation policy optional; <em>blame-safe</em>.</li>
-            <li>🪟 <strong>Authority Window</strong>: bounded scope/time; revert ≤N%; auto-pause optional.</li>
-            <li>🗝️ <strong>Two-Key/TTL</strong>: dual approval for high impact; time-to-live forces review.</li>
-            <li>🧨 <strong>Kill Criteria</strong>: pre-agreed redlines → action (no dithering under stress).</li>
-            <li>🔗 <strong>Evidence</strong>: stable links or snapshots; redact PHI/PII.</li>
+            <li><strong>Hazard</strong>: state the specific failure mode &mdash; if X then Y fails (where Z).</li>
+            <li><strong>Recheck / Jumps</strong>: set a date or condition to review; wire it to alerts or calendars.</li>
+            <li><strong>Recheck Steward</strong>: assign a person who owns the reminder cadence and keeps it blame-safe.</li>
+            <li><strong>Authority Window</strong>: define scope and time bounds; revert automatically when the window closes.</li>
+            <li><strong>Two-Key / TTL</strong>: require dual approval for high-impact actions and force a time-to-live.</li>
+            <li><strong>Kill Criteria</strong>: agree on observable red lines that trigger an immediate stop.</li>
+            <li><strong>Evidence</strong>: capture stable links or snapshots; redact sensitive data before sharing.</li>
           </ul>
         </div>
         <div class="card span4">
           <span class="pill">Fits your ops</span>
-          <h2>Clips onto the work you already do</h2>
+          <h2>Clips onto existing work</h2>
           <ul class="clean">
-            <li>🧭 OODA (Decide→Act), add Kill Criteria + TTL</li>
-            <li>🧱 Kanban (ticket), add Recheck + Steward</li>
-            <li>📄 ADR (design), add Authority Window</li>
-            <li>🩺 SBAR (handoff), add redline + follow-up</li>
+            <li>OODA (decide/act) &mdash; add kill criteria and TTL.</li>
+            <li>Kanban tickets &mdash; add a recheck and steward field.</li>
+            <li>Architecture or design records &mdash; document the authority window.</li>
+            <li>SBAR handoffs &mdash; note the red line plus follow-up plan.</li>
           </ul>
         </div>
         <div class="card span6">
           <span class="pill">Why it works</span>
           <h2>Engineering defense against failure physics</h2>
           <ul class="clean">
-            <li>Counters ETTO & local-minima traps</li>
-            <li>Creates safe signals (near-misses ↑)</li>
-            <li>Contains blast radius (bounded authority)</li>
-            <li>Keeps low-risk flow fast (fatigue ↓)</li>
+            <li>Counters ETTO and local-minima traps.</li>
+            <li>Creates safe signals by logging near-misses.</li>
+            <li>Contains blast radius through bounded authority.</li>
+            <li>Keeps low-risk flow fast by reducing fatigue.</li>
           </ul>
         </div>
         <div class="card span6">
           <span class="pill">Prove it</span>
           <h2>Falsifiable by design</h2>
           <ul class="clean">
-            <li>Primary: false approvals ↓; on-time rechecks ≥ <strong>80%</strong></li>
-            <li>Secondary: near-miss capture ↑; escalation 10–25%</li>
-            <li>Methods: A/B by week • Stepped-wedge • ITS</li>
-            <li><a class="link" href="docs/notebook-index.md">Open notebooks</a> to simulate, evaluate, visualize.</li>
+            <li>Primary: reduce false approvals and keep on-time rechecks &ge; <strong>80%</strong>.</li>
+            <li>Secondary: capture near-misses and escalate 10&ndash;25% of flagged cases.</li>
+            <li>Methods: A/B by week, stepped-wedge, or interrupted time series.</li>
+            <li><a class="link" href="docs/notebook-index.md">Open notebooks</a> to simulate, evaluate, and visualize.</li>
           </ul>
         </div>
       </div>
       <div class="hr"></div>
       <div class="grid">
-        <div class="card span12" style="text-align:center">
-          <h2 style="margin-bottom:8px">ClipCard in one sentence</h2>
-          <p style="color:#cfe6ff">An <strong>engineering control surface</strong> for high-risk work — a tiny ritual that formalizes judgement, protects people, and preserves speed.</p>
+        <div class="card span12 center-card">
+          <h2>ClipCard in one sentence</h2>
+          <p>An <strong>engineering control surface</strong> for high-risk work &mdash; a tiny ritual that formalizes judgement, protects people, and preserves speed.</p>
         </div>
       </div>
     </section>
 
     <footer>
-      <div class="badge">v0.9 • Seedpack</div>
-      <div>© Adaptive Systems Kollektive • Licensed permissively • <a class="link" href="LICENSE">LICENSE</a></div>
+      <div class="badge">v0.9 &middot; Seedpack</div>
+      <div>&copy; Adaptive Systems Kollektive &middot; Licensed permissively &middot; <a class="link" href="README.md#license">License</a></div>
     </footer>
-  </div>
+  </main>
 
   <noscript>
     <div style="position:fixed;bottom:10px;left:10px;color:#a9bcd6;background:#0b1320;padding:8px 10px;border:1px solid #274060;border-radius:8px;">
@@ -211,4 +265,3 @@ Optional for Pages: add a blank file named `.nojekyll` at repo root.
   </noscript>
 </body>
 </html>
-```0
