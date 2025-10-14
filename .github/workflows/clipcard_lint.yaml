@@ -26,59 +26,59 @@ jobs:
           pip install jsonschema
       - name: Validate ClipCards against base (v1) and extended (v1e)
         run: |
-          python - << 'PY'
-import os, json, glob, sys
-from jsonschema import Draft7Validator
-def load(p):
-    with open(p,'r',encoding='utf-8') as f: return json.load(f)
-base = load("schema/clipcard.schema.v1.json")
-ext  = load("schema/clipcard.schema.v1e.json") if os.path.exists("schema/clipcard.schema.v1e.json") else None
-fail = warn = 0
-cards = glob.glob("**/*.clipcard.json", recursive=True)
-for f in cards:
-    d = load(f)
-    berrs = sorted(Draft7Validator(base).iter_errors(d), key=lambda e: e.path)
-    if berrs:
-        print(f"::error file={f}::" + "; ".join([e.message for e in berrs])); fail += 1
-    if ext:
-        eerrs = sorted(Draft7Validator(ext).iter_errors(d), key=lambda e: e.path)
-        if eerrs:
-            print(f"::warning file={f}::(v1e) " + "; ".join([e.message for e in eerrs])); warn += 1
-if fail: sys.exit(1)
-print(f"Validated {len(cards)} cards. base_fail={fail}, ext_warn={warn}")
-PY
+          python << 'EOF'
+          import os, json, glob, sys
+          from jsonschema import Draft7Validator
+          def load(p):
+              with open(p,'r',encoding='utf-8') as f: return json.load(f)
+          base = load("schema/clipcard.schema.v1.json")
+          ext  = load("schema/clipcard.schema.v1e.json") if os.path.exists("schema/clipcard.schema.v1e.json") else None
+          fail = warn = 0
+          cards = glob.glob("**/*.clipcard.json", recursive=True)
+          for f in cards:
+              d = load(f)
+              berrs = sorted(Draft7Validator(base).iter_errors(d), key=lambda e: e.path)
+              if berrs:
+                  print(f"::error file={f}::" + "; ".join([e.message for e in berrs])); fail += 1
+              if ext:
+                  eerrs = sorted(Draft7Validator(ext).iter_errors(d), key=lambda e: e.path)
+                  if eerrs:
+                      print(f"::warning file={f}::(v1e) " + "; ".join([e.message for e in eerrs])); warn += 1
+          if fail: sys.exit(1)
+          print(f"Validated {len(cards)} cards. base_fail={fail}, ext_warn={warn}")
+          EOF
       - name: Build ClipMap CSV
         run: |
-          python - << 'PY'
-import json, glob, csv, os
-cards = []
-for f in glob.glob("**/*.clipcard.json", recursive=True):
-    try:
-        d = json.load(open(f, 'r', encoding='utf-8'))
-    except Exception as e:
-        print(f"::warning file={f}::Unable to parse: {e}"); continue
-    rf = (d.get("risk_factors") or {})
-    cards.append([
-        d.get("id",""),
-        os.path.dirname(f),
-        (d.get("telos") or "").replace("\n"," ").strip(),
-        d.get("cycle_phase",""),
-        rf.get("reversibility",""),
-        rf.get("coupling",""),
-        rf.get("exposure",""),
-        rf.get("latency_to_harm_hours",""),
-        rf.get("equity_rights_sensitivity","")
-    ])
-os.makedirs("data/clipmap", exist_ok=True)
-with open("data/clipmap/cards.csv","w",newline="",encoding="utf-8") as fh:
-    w=csv.writer(fh)
-    w.writerow(["id","domain","telos","cycle_phase","reversibility","coupling","exposure","latency_to_harm_hours","equity_rights_sensitivity"])
-    w.writerows(cards)
-if not os.path.exists("data/clipmap/events.csv"):
-    with open("data/clipmap/events.csv","w",newline="",encoding="utf-8") as fh:
-        w=csv.writer(fh); w.writerow(["card_id","time","condition_hit","action_taken","outcome","notes"])
-print("ClipMap written to data/clipmap/")
-PY
+          python << 'EOF'
+          import json, glob, csv, os
+          cards = []
+          for f in glob.glob("**/*.clipcard.json", recursive=True):
+              try:
+                  d = json.load(open(f, 'r', encoding='utf-8'))
+              except Exception as e:
+                  print(f"::warning file={f}::Unable to parse: {e}"); continue
+              rf = (d.get("risk_factors") or {})
+              cards.append([
+                  d.get("id",""),
+                  os.path.dirname(f),
+                  (d.get("telos") or "").replace("\n"," ").strip(),
+                  d.get("cycle_phase",""),
+                  rf.get("reversibility",""),
+                  rf.get("coupling",""),
+                  rf.get("exposure",""),
+                  rf.get("latency_to_harm_hours",""),
+                  rf.get("equity_rights_sensitivity","")
+              ])
+          os.makedirs("data/clipmap", exist_ok=True)
+          with open("data/clipmap/cards.csv","w",newline="",encoding="utf-8") as fh:
+              w=csv.writer(fh)
+              w.writerow(["id","domain","telos","cycle_phase","reversibility","coupling","exposure","latency_to_harm_hours","equity_rights_sensitivity"])
+              w.writerows(cards)
+          if not os.path.exists("data/clipmap/events.csv"):
+              with open("data/clipmap/events.csv","w",newline="",encoding="utf-8") as fh:
+                  w=csv.writer(fh); w.writerow(["card_id","time","condition_hit","action_taken","outcome","notes"])
+          print("ClipMap written to data/clipmap/")
+          EOF
       - name: Upload ClipMap artifact
         uses: actions/upload-artifact@v4
         with:
