@@ -1,4 +1,9 @@
 card_id,time,condition_hit,action_taken,outcome,notes
-
----
-
+BILLING-CHANGE-2049,2025-11-10T17:05:00Z,"error_rate > 0.01",rollback,Incident Prevented,"Kill criteria triggered automatically, change was rolled back before major impact."
+DB-MIGRATION-001,2025-11-12T10:00:00Z,N/A,N/A,Success,"Migration completed successfully, no issues noted."
+API-RATE-LIMIT-UPDATE,2025-11-13T14:20:00Z,N/A,N/A,Success,"Rate limits updated, monitoring shows stable downstream service performance."
+LLM-RELEASE-042,2025-12-15T01:00:00Z,"pii_leak_count_24h >= 1","Disable tool-use for cohort",Incident Prevented,"PII leak detected, tool-use was disabled as per the kill criteria."
+ICS-OP-SOUTH-CC-001,2025-11-10T15:00:00Z,"median_queue_time_minutes > 30","Close Center C; redirect",Success,"Queue times exceeded threshold, center was closed and citizens redirected. Plan worked."
+PICU-ANTICOAG-0007,2025-11-10T10:00:00Z,"INR > 3.5","Stop dose; notify Attending",Incident Prevented,"High INR detected, dose stopped. Patient harm avoided."
+MOC-DEV-PSV203-A12,2025-11-10T14:30:00Z,N/A,N/A,Success,"Bypass complete, no kill criteria were met."
+POLICY-PILOT-ENUS-003,2025-12-16T00:00:00Z,N/A,N/A,Success,"Policy pilot complete, appeal rate remained stable."

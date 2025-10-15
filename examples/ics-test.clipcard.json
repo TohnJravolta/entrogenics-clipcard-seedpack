@@ -1,0 +1,19 @@
+{
+  "id": "ICS-OP-SOUTH-CC-001",
+  "linked_item": "ICS-204-South-2025-11-10",
+  "impact": 5,
+  "uncertainty": 4,
+  "hazard": "If Cooling Center C opens with reduced staff, queueing and heat exposure may rise in South Division (Groups S1–S2).",
+  "recheck": { "due_time": "2025-11-10T14:00:00Z", "jump_trigger": "median_queue_time > 30m OR heat_illness_incident >= 1" },
+  "steward": { "primary": "Operations Section Chief", "backup": "Planning Section Chief" },
+  "authority_window": { "scope_limit": "South Division; cap 150 ppl/hr; hours 10:00–18:00", "time_limit": "1 OP", "auto_pause": true },
+  "two_key_ttl": { "required": true, "approvers": ["OPS","PLANS"], "ttl_hours": 12 },
+  "kill_criteria": [
+    { "condition": "median_queue_time_minutes > 30", "action": "Close Center C; redirect to Center B; Logistics surge; PIO announcement" },
+    { "condition": "water_stockout == true", "action": "Temporarily close; resupply; notify OPS" },
+    { "condition": "safety_incident_class >= 2", "action": "Close Center C; redirect all staff to triage" }
+  ],
+  "evidence_links": [
+    { "name": "ICS-202 Objectives v3", "url": "https://example.org/iap-202" }
+  ]
+}

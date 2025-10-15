@@ -1,0 +1,19 @@
+{
+  "id": "PICU-ANTICOAG-0007",
+  "linked_item": "SBAR-2025-11-09-PICU",
+  "impact": 5,
+  "uncertainty": 4,
+  "hazard": "If weight not verified, pediatric anticoagulation dose may be 10x in PICU.",
+  "recheck": { "due_time": "2025-11-10T09:00:00Z", "jump_trigger": "alert: med_error_flag == true" },
+  "steward": { "primary": "Charge RN", "backup": "On-call Pharmacist" },
+  "authority_window": { "scope_limit": "PICU only", "time_limit": "24h", "auto_pause": true },
+  "two_key_ttl": { "required": true, "approvers": ["Attending", "Pharmacist"], "ttl_hours": 24 },
+  "kill_criteria": [
+    { "condition": "SpO2 < 90", "action": "Stop dose; notify Attending + Pharm; document" },
+    { "condition": "HR > 160", "action": "Stop dose; notify Attending + Pharm; document" },
+    { "condition": "INR > 3.5", "action": "Stop dose; notify Attending + Pharm; document" }
+  ],
+  "evidence_links": [
+    { "name": "Peds Dosing Guideline", "url": "https://example.org/peds-dose" }
+  ]
+}

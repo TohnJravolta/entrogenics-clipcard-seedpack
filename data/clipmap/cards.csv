@@ -1,2 +1,9 @@
 id,domain,telos,cycle_phase,reversibility,coupling,exposure,latency_to_harm_hours,equity_rights_sensitivity
-
+BILLING-CHANGE-2049,dfm-devops-sre,"If new billing job mis-parses CSV, then double-charges occur in EU region.",Disturb,3,3,"EU customers",1,false
+DB-MIGRATION-001,dfm-devops-sre,"If the database migration fails mid-way, we could have data corruption for all users.",Collapse,4,5,"All users",0.5,false
+API-RATE-LIMIT-UPDATE,dfm-devops-sre,"Increasing API rate limits could lead to cascading failures in downstream services.",Unfold,2,4,"Internal services",2,false
+LLM-RELEASE-042,dfm-aiml-governance,"If advanced tool-use is enabled for general users, prompt-injection and PII exfiltration may increase in EN markets.",Disturb,5,4,"EN Markets",24,true
+ICS-OP-SOUTH-CC-001,dfm-civic-ics,"If Cooling Center C opens with reduced staff, queueing and heat exposure may rise in South Division.",Unfold,3,2,"South Division citizens",4,false
+PICU-ANTICOAG-0007,dfm-clinical-sbar,"If weight not verified, pediatric anticoagulation dose may be 10x in PICU.",Collapse,5,3,"PICU patients",1,true
+MOC-DEV-PSV203-A12,dfm-industrial-aviation,"If PSV-203 is bypassed, overpressure may occur at vessel V-12 (Train A).",Disturb,4,4,"Train A operators",0.1,false
+POLICY-PILOT-ENUS-003,dfm-policy-ts,"If we expand the hate meme classifier, false positives on satire may increase.",Unfold,2,2,"EN-US users",168,true

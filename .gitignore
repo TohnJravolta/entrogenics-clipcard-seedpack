@@ -4,3 +4,8 @@
 *.swo
 __pycache__/
 *.pyc
+
+# Build artifacts
+build_notebooks.py
+nul
+*.pdf

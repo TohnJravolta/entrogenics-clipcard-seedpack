@@ -1,0 +1,18 @@
+{
+  "id": "MOC-DEV-PSV203-A12",
+  "linked_item": "MOC-2025-11-09-TrainA",
+  "impact": 5,
+  "uncertainty": 4,
+  "hazard": "If PSV-203 is bypassed, overpressure may occur at vessel V-12 (Train A).",
+  "recheck": { "due_time": "2025-11-10T14:00:00Z", "jump_trigger": "PI-V12 >= 8.3 bar for 120s" },
+  "steward": { "primary": "Shift Lead", "backup": "Safety Engineer" },
+  "authority_window": { "scope_limit": "Train A only; rate limited to 60%", "time_limit": "12h", "auto_pause": true },
+  "two_key_ttl": { "required": true, "approvers": ["ProcessEngB","ShiftLead"], "ttl_hours": 12 },
+  "kill_criteria": [
+    { "condition": "PI-V12 >= 8.5 bar for 30s", "action": "Trip FEED_PUMP_P3; open vent per SOP-V12; notify CCR; start controlled shutdown" },
+    { "condition": "TI-V12 >= 220 C for 60s", "action": "Notify CCR; prepare shutdown per SOP" }
+  ],
+  "evidence_links": [
+    { "name": "P&ID-V12-revK", "url": "https://example.org/pid-v12-revk" }
+  ]
+}
